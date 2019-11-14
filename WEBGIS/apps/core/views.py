@@ -30,7 +30,7 @@ from .utils import port
 
 def index(request):
 	plots = []
-.
+
 	script = server_document('http://68.183.134.114:5006/gmap')
 	pprint(script)
 	return render(request, 'site/index.html', {'script':script})
@@ -39,6 +39,3 @@ def index(request):
 def dashboard(request):
 
         return JsonResponse({'itamar':"itamar"})
-
-
-.
