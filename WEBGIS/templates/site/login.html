@@ -1,0 +1,36 @@
+
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <h1 class="form-heading">Previsão de Libra</h1>
+    <div class="login-form">
+        <div class="main-div">
+            <div class="panel">
+                <h2>Autenticação</h2>
+                <p>Por favor entre com seu usuário e senha.</p>
+            </div>
+            <form id="Login" method="POST">
+
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary">Login</button>
+
+            </form>
+        </div>
+        <p class="botto-text"> Prooceano</p>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock %}

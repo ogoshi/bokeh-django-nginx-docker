@@ -1,0 +1,112 @@
+@import "bootstrap.min.css";
+@import "font-awesome.min.css";
+@import "leaflet.css";
+@import "css.css";
+
+html, body { font-family: "Source Sans Pro", sans-serif; color: #4b4d4e; font-weight: 300; font-size: 18px; background-color: #001F43; }
+
+a { color: #4b4d4e; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { padding: 0; }
+
+body { display: flex; flex-flow: column; }
+body > * { order: 3; }
+body > nav.navbar { height: 58px; font-weight: 100; background-color: #000; border: 0; order: 2; margin: 0; }
+body > nav.navbar > div { position: relative; background-color: #000; padding: 0 15px !important; height: 58px; z-index: 9999; padding: 0; box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2); }
+body > nav.navbar > div div.navbar-header { position: relative; z-index: 2; }
+body > nav.navbar > div div.navbar-header a.navbar-brand { width: 282px; line-height: 58px; height: auto; background: url(../images/prooceano-inline.png) no-repeat center center; background-size: 100% auto; overflow: hidden; text-indent: -9999px; margin-left: 15px; padding: 0; }
+body > nav.navbar > div div#navbar { position: relative; z-index: 1; background-color: #000; border: 0; }
+body > nav.navbar > div div#navbar ul.nav { list-style: none; z-index: 1; }
+body > nav.navbar > div div#navbar ul.nav > li > a { display: block; color: #939393; text-decoration: none; text-transform: uppercase; padding: 10px; }
+body > nav.navbar > div div#navbar ul.nav > li > a:hover,
+body > nav.navbar > div div#navbar ul.nav > li > a.active { color: #FFF; }
+body > nav.navbar > div div#navbar ul.nav:nth-child(1) { position: relative; z-index: 1; }
+body > nav.navbar > div div#navbar ul.nav:nth-child(2) { position: relative; z-index: 2; }
+body > nav.navbar > div div#navbar ul.nav:nth-child(2) > li > a { font-size: 14px; text-transform: lowercase; }
+body > section { position: relative; min-height: 100vh; background-size: cover; background-position: top center; box-sizing: border-box; }
+body > section div.container h1 { margin: 0; }
+body > section div.container p { margin: 20px 0; }
+body > section:not(#home) { min-height: calc(100vh - 58px); padding: 15px; }
+body > section:not(#home) div.container { padding: 20px; padding-bottom: 5px; }
+body > section:not(#home) div.container h1 { color: #FFF; margin-bottom: 50px; padding-bottom: 20px; border-bottom: solid 1px #EF987A; font-size: 30px; font-weight: 100; text-transform: uppercase; text-align: center; }
+body > section:not(#home) div.container h1::before { display: block; content: ""; width: 34px; height: 34px; background-image: url(../images/ico-prooceano.png); background-size: 100% auto; margin: 0 auto; margin-bottom: 10px; }
+body > section:not(#home) div.container h2 { color: #FF5115; margin-bottom: 20px; font-size: 22px; font-weight: 100; text-align: center; line-height: 1.1; }
+body > section#home { order: 1; overflow: hidden; }
+body > section#home div.container { position: relative; width: 100vw; height: 100vh; }
+body > section#home div.container > div { position: absolute; top: 0; bottom: 0; left: 0; right: 0; text-align: center; z-index: 2; }
+body > section#home div.container > div > header { position: absolute; top: 50%; width: 100%; height: 116px; padding: 0; margin-top: -116px; border: none; }
+body > section#home div.container > div > header > h1 { display: inline-block; width: 240px; height: 61px; margin: 0; margin-bottom: 65px; background-image: url(../images/prooceano.png); background-size: 100% auto; overflow: hidden; text-indent: -9999px; }
+body > section#home div.container > div > header > p { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; color: #E86E45; font-size: 20px; }
+body > section#home div.container > div > a { display: inline-block; position: absolute; left: 50%; bottom: 30px; margin-left: -50px; width: 100px; height: 28px; background-image: url(../images/arrow-bottom.png); background-size: 100% auto; overflow: hidden; text-indent: -9999px; }
+body > section#home div.container > video { position: absolute; visibility: hidden; width: 100vw; height: 100vh; object-fit: cover; object-position: center center; z-index: 1; }
+body > section#about { background-image: url(../images/bg-about.jpg); }
+body > section#about div.container { padding: 20px; padding-bottom: 20px; background-color: #ffffff; text-align: center; color: #000; }
+body > section#areas { text-align: center; background-color: #fafafa; background-image: url(../images/bg-areas-blue.png); padding: 0; }
+body > section#areas div#drifter { background-image: url(../images/bg-areas-drifter.jpg); background-size: contain; background-repeat: no-repeat; overflow: auto; }
+body > section#areas div#glider { background-image: url(../images/glider.png); background-repeat: no-repeat; background-position: right -40px bottom 150px; }
+body > section#areas div#shade { background-image: url(../images/bg-areas-shade.png); background-repeat: repeat-x; background-position: bottom; overflow: auto; }
+body > section#areas div.container { background-color: #E6E6E6; z-index: 2; }
+body > section#areas div.container h1 { color: #626262; border-bottom-color: #BBBBBB; }
+body > section#areas div.container h1::before { background-image: url(../images/ico-prooceano-reverse.png); }
+body > section#areas div.container section { margin-bottom: 40px; }
+body > section#areas div.container section img { max-width: 160px; width: 30%; margin: 0 5px; border-radius: 50%; overflow: hidden; }
+body > section#areas div.container section img:first-child { margin-left: 0 !important; }
+body > section#areas div.container section img:last-child { margin-right: 0 !important; }
+body > section#clients_partners { background-color: #FFF; }
+body > section#clients_partners div.container { width: 83%; padding-top: 45px; }
+body > section#clients_partners div.container h1 { color: #626262; border-bottom-color: #BBBBBB; }
+body > section#clients_partners div.container h1::before { background-image: url(../images/ico-prooceano-reverse.png); }
+body > section#clients_partners div.container ul,
+body > section#clients_partners div.container ul > li { margin: 0; padding: 0; list-style: none; }
+body > section#clients_partners div.container ul { text-align: center; margin-bottom: 50px; }
+body > section#clients_partners div.container ul.partners { margin-bottom: 20px; }
+body > section#clients_partners div.container ul > li { display: inline-block; width: 165px; vertical-align: middle; text-align: center; margin-bottom: 40px; }
+body > section#clients_partners div.container ul > li > img { max-width: 100%; }
+body > section#contact { padding: 0; background-image: url(../images/bg-contact.jpg); background-size: contain; background-repeat: no-repeat; background-position: center top; background-color: #ff5c33; }
+body > section#contact div.container { background-color: #ff5c33; text-align: center; min-height: 30vh; margin-top: 55vh; color: #000; padding: 50px; }
+body > section#contact div.container p.phone,
+body > section#contact div.container p.email { font-size: 22px; }
+body > section#contact div#contact-map { height: 300px; background-color: #CCC; }
+
+body.navbar-fixed > nav.navbar > div { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; }
+
+@media (min-width: 768px) {
+  body > nav.navbar > div div#navbar { height: 58px !important; }
+  body > nav.navbar > div div#navbar ul.nav > li > a { line-height: 55px; border-bottom: solid 3px rgba(0,0,0,0); padding-top: 0; padding-bottom: 0; }
+  body > nav.navbar > div div#navbar ul.nav:nth-child(1) { position: absolute; left: 0; right: 0; top: 0; bottom: 0; text-align: center; }
+  body > nav.navbar > div div#navbar ul.nav:nth-child(1) > li { display: inline-block; float: none; }
+  body > nav.navbar > div div#navbar ul.nav:nth-child(1) > li > a.active { border-bottom-color: #FF5115; }
+  body > section div.container { width: auto; box-sizing: content-box; }
+  body > section#home div.container > video { visibility: visible; }
+  body > section#clients_partners div.container ul > li { width: 165px; }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  body > nav.navbar > div div.navbar-header a.navbar-brand { margin-left: 0; }
+  body > nav.navbar > div div#navbar ul.nav:nth-child(1) { left: 150px; right: 80px; font-size: 14px; font-weight: bold; }
+}
+
+@media (min-width: 768px) and (max-width: 1300px) {
+  body > nav.navbar > div div.navbar-header a.navbar-brand { width: 134px; background-image: url(../images/prooceano.png); }
+}
+
+@media (min-width: 992px) {
+  html, body { font-size: 18px; }
+  body > nav.navbar > div ul.nav { top: 0; left: 0; right: 0; padding: 0; text-align: center; }
+  body > section > div p { margin: 30px 0; }
+  body > section:not(#home) div.container h1 { font-size: 47px; margin-bottom: 50px; padding-bottom: 20px; }
+  body > section:not(#home) div.container h1::before { width: 56px; height: 56px; }
+  body > section:not(#home) div.container h2 { font-size: 35px; margin-bottom: 25px; }
+  body > section#home div.container > div > header { height: 160px; margin-top: -160px; }
+  body > section#home div.container > div > header > h1 { width: 373px; height: 96px; }
+  body > section#home div.container > div > header > p { font-size: 30px; }
+  body > section#home div.container > div > a { bottom: 90px; width: 128px; height: 36px; margin-left: -64px; }
+  body > section#about div.container,
+  body > section#areas div.container { width: 664px; margin: 0 auto; margin-top: 115px; margin-bottom: 50px; padding: 55px; padding-bottom: 40px; }
+  body > section#areas div.container section img { margin: 10px; }
+  body > section#clients_partners div.container { width: 83%; margin: 0 auto;}
+  body > section#clients_partners div.container ul > li { width: 165px; }
+  body > section#contact { background-position: center -160px; }
+  body > section#contact div.container h1 { width: 664px; margin: 0 auto; }
+}

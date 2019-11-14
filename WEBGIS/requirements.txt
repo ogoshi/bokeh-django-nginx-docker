@@ -1,0 +1,15 @@
+Django
+geoviews
+bokeh==1.2.0
+gunicorn
+django-cors-headers
+markdown
+django-filter
+urllib3
+django-nested-admin
+scipy
+xarray
+cmocean
+ecmwf-api-client
+matplotlib
+django-cors-headers

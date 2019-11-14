@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+  web:
+
+    build: ./WEBGIS
+    command: gunicorn -c gunicorn.conf WEBGIS.wsgi
+    volumes:
+      - ./WEBGIS:/WEBGIS
+    ports:
+      - "8000:8000"
+      - "5006:5006"
+
+  nginx:
+    build: ./proxy
+    depends_on:
+      - web
+    command: nginx -g "daemon off;"
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - ./WEBGIS/static:/var/www/static
+      - ./WEBGIS/media:/var/www/media
+      - ./WEBGIS/templates:/var/www/templates
+      - ./WEBGIS/staticfiles:/var/www/staticfiles
