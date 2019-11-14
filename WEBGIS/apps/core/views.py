@@ -31,7 +31,7 @@ from .utils import port
 def index(request):
 	plots = []
 
-	script = server_document('http://68.183.134.114:5006/gmap')
+	script = server_document('http://web:5006/gmap')
 	pprint(script)
 	return render(request, 'site/index.html', {'script':script})
 
