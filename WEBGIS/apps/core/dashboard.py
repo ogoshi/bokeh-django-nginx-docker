@@ -76,7 +76,7 @@ class xarray(Plot):
 		print(ensemble)
 		dataset = gv.Dataset(ensemble.data, 
 							ensemble.dimensions,
-							't2m',
+							'u10',
 							crs=crs.PlateCarree())
 
 		images = dataset.to(gv.Image)

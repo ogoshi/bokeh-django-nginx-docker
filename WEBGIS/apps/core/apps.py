@@ -48,18 +48,18 @@ class Data:
 
 
 def bk_worker():
-	gvplot = LayoutDashBoard(filename="data2.nc")
+	gvplot = LayoutDashBoard(filename="data.nc")
 	app = gvplot.app
 	server = Server({'/gmap': app},
 		io_loop=IOLoop(),
-		address="127.0.0.1",
+		address="localhost",
 		port=port,
 		allow_websocket_origin=["*"])
 	server.start()
 	server.io_loop.start()
 
 def ecmwf_worker():
-	Data(filename="data2.nc", date=datetime.datetime.today(), num=20).execute()
+	Data(filename="data.nc", date=datetime.datetime.today(), num=20).execute()
 
 class CoreConfig(AppConfig):
     name = 'apps.core'
