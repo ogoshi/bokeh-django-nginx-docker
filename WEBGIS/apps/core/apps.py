@@ -52,7 +52,7 @@ def bk_worker():
 	app = gvplot.app
 	server = Server({'/gmap': app},
 		io_loop=IOLoop(),
-		address="68.183.134.114",
+		address="127.0.0.1",
 		port=port,
 		allow_websocket_origin=["*"])
 	server.start()
