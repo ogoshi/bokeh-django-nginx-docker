@@ -55,7 +55,7 @@ class Ensemble(Model):
 
  		self.setValues(kwargs)
 
- 		self.data = xr.open_dataset(os.path.join(dataDir, self.filename), decode_times=False, decode_cf=True ,use_cftime=True)
+ 		self.data = xr.open_dataset(os.path.join(dataDir, self.filename))
  		print(self.data)
 
  	@property
@@ -81,21 +81,21 @@ class xarray(Plot):
 
 		images = dataset.to(gv.Image)
 
-		im = images.opts(cmap=cmapThermal, colorbar=True, width=600, height=500)\
-			 * gf.coastline
+		im = images.opts(cmap=cmapThermal, 
+						colorbar=True, height=400, width=700 ,title='Dados NCEP') * gf.coastline
+		img = im.opts(responsive=True)
+		print( repr(img) )
 
-		print( repr(im) )
+		gvplot = renderer.html(img)
 
-		gvplot = renderer.html(im)
-
-		hvplot = renderer.get_plot(im)
+		hvplot = renderer.get_plot(img)
 		#hvslider = renderer.get_slider(im)
 
 		print(hvplot.state)
 		#script, div = components(gvplot.roots)
 		#doc = renderer.server_doc(im)
 
-		return im
+		return img
 
 
 
