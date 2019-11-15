@@ -82,16 +82,19 @@ class xarray(Plot):
 		images = dataset.to(gv.Image)
 
 		im = images.opts(cmap=cmapThermal, 
-						colorbar=True, height=400, width=700 ,title='Dados NCEP') * gf.coastline
+						colorbar=True, 
+						height=784, 
+						width=1638 ,
+						title='Dados NCEP') * gf.coastline
 		img = im.opts(responsive=True)
-		print( repr(img) )
+		print(repr(img))
 
-		gvplot = renderer.html(img)
+		#gvplot = renderer.html(img)
 
-		hvplot = renderer.get_plot(img)
+		#hvplot = renderer.get_plot(img)
 		#hvslider = renderer.get_slider(im)
 
-		print(hvplot.state)
+		#print(hvplot.state)
 		#script, div = components(gvplot.roots)
 		#doc = renderer.server_doc(im)
 
