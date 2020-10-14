@@ -3,6 +3,8 @@ import geoviews.feature as gf
 import xarray as xr
 from cartopy import crs
 
+import numpy as np
+
 import datetime
 
 import os, sys
@@ -31,6 +33,8 @@ renderer = renderer.instance(mode='server')
 import cmocean
 
 from glob import glob
+
+from geoviews import opts, tile_sources as gvts
 
 
 cmapThermal = cmocean.cm.thermal
@@ -63,68 +67,27 @@ class Ensemble(Model):
  		return ['longitude', 'latitude', 'time']
 
 
-class Plot:
-    def execute(self): pass
-
-
-class xarray(Plot):
-	def __init__(self, filename):
-		self.filename = filename
-	def execute(self):
-
-		ensemble = Ensemble(filename=self.filename)
-		print(ensemble)
-		dataset = gv.Dataset(ensemble.data, 
-							ensemble.dimensions,
-							'u10',
-							crs=crs.PlateCarree())
-
-		images = dataset.to(gv.Image)
-
-		im = images.opts(cmap=cmapThermal, 
-						colorbar=True, 
-						height=784, 
-						width=1638 ,
-						title='Dados NCEP') * gf.coastline
-		img = im.opts(responsive=True)
-
-		
-		return hv.Layout(im)
-
-
-
-class Macro:
-    def __init__(self):
-        self.commands = []
-    def add(self, command):
-        self.commands.append(command)
-    def run(self):
-        for c in self.commands:
-            c.execute()
-
-
 class LayoutDashBoard(Model):
 	def __init__(self, **kwargs):
 
 		super(LayoutDashBoard, self).__init__()
+		ds = xr.open_dataset(os.path.join(dataDir, kwargs['filename']))
+		
+		long=np.linspace(-180, 180, 900, dtype='float32') 
+		ds['longitude'] = long
 
-		dataset = gv.Dataset(xr.open_dataset(os.path.join(dataDir, kwargs['filename'])), 
+		ds_out = ds.sel(latitude=slice(-22, -27), longitude=slice(-46, -41))
+
+
+		dataset = gv.Dataset(ds_out, 
 							['longitude', 'latitude', 'time'],
 							'u10',
-							crs=crs.PlateCarree())
+							crs=crs.PlateCarree()) 
 
 		images = dataset.to(gv.Image)
 
-		im = images.opts(cmap=cmapThermal, 
-						colorbar=True, 
-						height=784, 
-						width=1638 ,
-						title='Dados NCEP') * gf.coastline
-		img = im.opts(responsive=True)
+		im = images.opts(cmap='viridis', alpha=0.5, colorbar=True, width=600, height=500) * gvts.EsriImagery
 
-		self.app = img
-
-	def run(self):
-		self.macro.run()
+		self.app = im	
 
 
