@@ -10,3 +10,5 @@ urlpatterns = [
     # url('accounts/login/', auth_views.LoginView.as_view()),
     url(r'dashboard/', views.dashboard, name="dashboard"),
 ]
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()

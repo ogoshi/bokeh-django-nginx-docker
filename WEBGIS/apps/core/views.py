@@ -12,27 +12,22 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
 from django.urls import reverse
 
-from .dashboard import LayoutDashBoard
-
 import json
-import numpy.ma as ma
+
 
 from bokeh.embed import server_document, components
+from bokeh.client import pull_session
 
-from .dashboard import LayoutDashBoard
 
 step = 0
-
-import numpy as np
 
 from .utils import port
 
 
 def index(request):
-	plots = []
-
-	script = server_document('http://0.0.0.0:5006/gmap')
-	pprint(script)
+	
+	script = server_document(url='http://localhost:5006/gmap')
+	
 	return render(request, 'site/index.html', {'script':script})
 
 @csrf_exempt

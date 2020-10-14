@@ -1,5 +1,5 @@
 
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br" itemscope itemtype="http://schema.org/Organization">
 <head>
@@ -7,24 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>WEBGIS to NCEP/NCAR</title>
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
-
-  <link href="{% static 'css/bokeh.min.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'css/bokeh-widgets.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'css/geoviews.css' %}" rel="stylesheet" type="text/css">
-
-  <link href="{% static 'css/bokeh-widgets.min.css' %}" rel="stylesheet" type="text/css">
-
-  <link href="{% static 'css/bokeh-tables.css' %}" rel="stylesheet" type="text/css">
-
-  <link href="{% static 'css/bokeh-tables.min.css' %}" rel="stylesheet" type="text/css">
-
-  <script src="{% static 'js/bokeh.min.js' %}"></script>
-  <script src="{% static 'js/bokeh-gl.min.js' %}"></script>
-  <script src="{% static 'js/bokeh-widgets.min.js' %}"></script>
-  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-
-  
 
 </head>
 <style>
@@ -52,6 +34,6 @@ margin: 0 }
   
 
   <script>var basePath = "/site/";</script>
-  <script data-main="#" src="{% static 'js/require.min.js' %}"></script>
+  <script src="{% static 'js/require.min.js' %}"></script>
 </body>
 </html>

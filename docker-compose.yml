@@ -2,27 +2,38 @@ version: '2'
 
 services:
 
-  web:
-
+  webgis:
+    image: django-webgis
     build: ./WEBGIS
     command: gunicorn -c gunicorn.conf WEBGIS.wsgi
-    volumes:
-      - ./WEBGIS:/WEBGIS
     ports:
       - "8000:8000"
+    volumes:
+      - ./WEBGIS:/WEBGIS
+
+  bokehapp:
+    image: bokeh-server
+    build: ./bokehapp
+    command: python ./bokehapp/app/app.py
+    ports:
       - "5006:5006"
+    volumes:
+      - ./bokehapp:/bokehapp
 
   nginx:
+    image: nginx:latest
     build: ./proxy
-    depends_on:
-      - web
     command: nginx -g "daemon off;"
-
     ports:
       - "80:80"
-
     volumes:
       - ./WEBGIS/static:/var/www/static
       - ./WEBGIS/media:/var/www/media
       - ./WEBGIS/templates:/var/www/templates
       - ./WEBGIS/staticfiles:/var/www/staticfiles
+    depends_on:
+      - webgis
+      - bokehapp
+    links:
+      - webgis:webgis
+      - bokehapp:bokehapp

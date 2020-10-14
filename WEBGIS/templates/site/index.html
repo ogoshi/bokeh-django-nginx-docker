@@ -1,22 +1,17 @@
 {% extends 'layout/base.html' %}
 
-
+{% load static %}
 
 {% block content %}
 
 {% include 'common/nav.html' %}
 
-       
+        <div>
 
-        {% for plot in plots %}
-          {% for part in plot %}
-            
-            {{part | safe}}
-      
-          {% endfor %}
-        {% endfor %}
-        
-      	{{script | safe}}  
+			{{script | safe}}
+
+		</div>
+      	  
 
 
 {% endblock %}

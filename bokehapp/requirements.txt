@@ -1,0 +1,9 @@
+ipython
+numpy
+bokeh
+geoviews
+scipy
+xarray
+cmocean
+ecmwf-api-client
+matplotlib
