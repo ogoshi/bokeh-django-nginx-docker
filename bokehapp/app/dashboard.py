@@ -86,7 +86,7 @@ class LayoutDashBoard(Model):
 
 		images = dataset.to(gv.Image)
 
-		im = images.opts(cmap='viridis', alpha=0.5, colorbar=True, width=600, height=500) * gvts.EsriImagery
+		im = images.opts(cmap='viridis', alpha=0.8, colorbar=True, width=600, height=500) * gvts.EsriImagery
 
 		self.app = im	
 
