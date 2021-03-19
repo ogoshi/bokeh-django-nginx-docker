@@ -1,6 +1,6 @@
 ipython
 bokeh
-Django==2.2
+Django==2.2.18
 gunicorn
 markdown
 django-filter
